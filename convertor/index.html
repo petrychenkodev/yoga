@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>convertor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+</head>
+	<body>
+
+	</body>
+	<script>
+		var inputRub = documnet.getElementById('rub'),
+			inputUsd = documentd.getElementById('usd');
+
+		inputRub.addEventListener('input', function(){
+			let request = new XMLHttpRequest();
+
+			//request.open(method, url, async, login, pass);
+			request.open('GET', 'current.json');
+			request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+			request.send(body);
+
+			request.addEventListener('readystatechange', function(){
+				if(request.readeState === 4 && request.status === 200){
+					let data = JSON.parse(request.response);
+
+					inputUsd.value = inputRub.value / data.usd;
+				}else{
+					iputUsd.value = "error";
+				}
+			});
+
+		});
+	</script>
+</html>
